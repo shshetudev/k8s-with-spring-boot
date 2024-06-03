@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-k8s-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-boot-k8s-app
+  template:
+    metadata:
+      labels:
+        app: spring-boot-k8s-app
+    spec:
+      containers:
+      - name: spring-boot-k8s-app
+        image: shshetu/spring-boot-k8s-app:latest
+        resources: # comment out these lines if not required
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
